@@ -26,7 +26,9 @@ export type NoteDetail = NoteListItem & {
 };
 
 export function getAllNotes(): NoteListItem[] {
-  const files = fs.readdirSync(notesDir);
+  const files = fs
+    .readdirSync(notesDir)
+    .filter((file) => file.endsWith(".md"));
 
   return files.map((file) => {
     const filePath = path.join(notesDir, file);
